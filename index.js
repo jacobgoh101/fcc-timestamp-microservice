@@ -3,6 +3,10 @@ const moment = require('moment');
 
 const app = express();
 
+app.get('/',(req,res) => {
+  res.end('Based on https://www.freecodecamp.com/challenges/timestamp-microservice');
+});
+
 app.get('/:timeStr', (req,res) => {
   res.setHeader("Content-Type", "application/json");
 
