@@ -21,6 +21,14 @@ app.get('/:timeStr', (req,res) => {
   if(!date.isValid()) {
     date = moment.unix(timeStr);
   }
+  if(!date.isValid()) {
+    let result = {
+      unix: null,
+      natural: null
+    };
+    result = JSON.stringify(result);
+    res.end(result);
+  }
   const monthsName = [ "January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December" ];
   let natural = monthsName[date.months()] + ' ' + date.get('dates') + ', ' + date.get('years');
