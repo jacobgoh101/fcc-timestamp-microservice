@@ -4,7 +4,13 @@ const moment = require('moment');
 const app = express();
 
 app.get('/',(req,res) => {
-  res.end('Based on https://www.freecodecamp.com/challenges/timestamp-microservice');
+  res.setHeader("Content-Type", "text/plain");
+  let message = 'Based on https://www.freecodecamp.com/challenges/timestamp-microservice';
+
+  message += '\n\n\n\nExample usage:';
+  message += '\n\nhttps://jacobgoh101-fcc-timestamp-api.herokuapp.com/December%2015,%202015';
+  message += '\n\nhttps://jacobgoh101-fcc-timestamp-api.herokuapp.com/1450137600';
+  res.end(message);
 });
 
 app.get('/:timeStr', (req,res) => {
@@ -16,7 +22,7 @@ app.get('/:timeStr', (req,res) => {
     date = moment.unix(timeStr);
   }
   const monthsName = [ "January", "February", "March", "April", "May", "June",
-               "July", "August", "September", "October", "November", "December" ];
+  "July", "August", "September", "October", "November", "December" ];
   let natural = monthsName[date.months()] + ' ' + date.get('dates') + ', ' + date.get('years');
   let result = {
     unix: date.unix(),
